@@ -87,5 +87,15 @@ export default {
     Home: 'Home',
     Search: 'Search Results',
     ReadMore: 'Read More'
+  },
+  Gic: {
+    FAQtitleA: 'Frequently',
+    FAQtitleB: 'asked questions',
+    FAQtipsA: 'Questions about gums',
+    FAQtipsB: 'Questions about implants',
+    FAQtipsC: 'Am I at risk?',
+    Contact: 'Contact',
+    Us: 'Us',
+    OnlineEnquiry: 'Online Enquiry'
   }
 };

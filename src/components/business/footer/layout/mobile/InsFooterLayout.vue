@@ -1,10 +1,10 @@
 <template>
   <div id="footer">
     <div class="ContactBox">
-        <p class="BigTitle"><span class="color">Contact</span><span class="normal">Us</span></p>
+        <p class="BigTitle"><span class="color">{{$t('Gic.Contact')}}</span><span class="normal">{{$t('Gic.Us')}}</span></p>
         <p class="Contact" v-html="footerContact.Body"></p>
         <p class="footerBtn">
-           <router-link to="/">Online Enquiry</router-link>
+           <router-link to="/">{{$t('Gic.OnlineEnquiry')}}</router-link>
         </p>
     </div>
     <div class="footer-box">
@@ -164,6 +164,7 @@ export default class InsFooterLayout extends Vue {
 #footer {
   width: 100%;
   display: inline-block;
+  padding-top: 2rem;
   .ContactBox {
     width: 90%;
     margin: 0 auto;
@@ -171,9 +172,10 @@ export default class InsFooterLayout extends Vue {
       width: 100%;
       display: inline-block;
        text-align: center;
+       margin-bottom: 1rem;
        span {
          font-family: 'Baloo2-ExtraBold', 'Microsoft YaHei'!important;
-         font-size: 2.5rem;
+         font-size: 1.8rem;
          text-transform: uppercase;
        }
        .color {

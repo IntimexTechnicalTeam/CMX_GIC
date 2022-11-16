@@ -87,5 +87,15 @@ export default {
     Home: '首頁',
     Search: '搜索結果',
     ReadMore: '更多'
+  },
+  Gic: {
+    FAQtitleA: '常見',
+    FAQtitleB: '問題',
+    FAQtipsA: '與牙周病相關之疑問',
+    FAQtipsB: '與種植牙相關之疑問',
+    FAQtipsC: '我罹患牙周病之風險有多大？',
+    Contact: '聯絡',
+    Us: '我們',
+    OnlineEnquiry: '網上查詢'
   }
 };

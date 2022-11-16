@@ -2,25 +2,25 @@
   <div class="siderbarContainer">
     <div id="sidebar" v-show="isShow">
       <a href="javascript:void(0);" @click="toTop"
-        ><img src="/static/Images/sidebar/down.png"
+        ><img src="/static/Images/pc/pc_43.png"
       /></a>
       <a href="javascript:void(0);" @click="show = !show"
-        ><img src="/static/Images/sidebar/down2.png"
+        ><img src="/static/Images/pc/pc_45.png"
       /></a>
       <span v-show="show">
         <a
-          href="https://api.whatsapp.com/send?phone=85262891789&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B%E6%B3%B0%E7%BE%8E%E7%A7%91%E6%8A%80%E7%9A%84%E6%9C%8D%E5%8B%99"
+          href="https://api.whatsapp.com/send?phone=85237039230&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B%E6%B3%B0%E7%BE%8E%E7%A7%91%E6%8A%80%E7%9A%84%E6%9C%8D%E5%8B%99"
           target="_blank"
-          ><img src="/static/Images/sidebar/whatsapp.png"
+          ><img src="/static/Images/pc/pc_40.png"
         /></a>
         <a href="javascript:;" class="livechat" @click="showLivechat"
-          ><img src="/static/Images/sidebar/facebook.png"
+          ><img src="/static/Images/pc/pc_41.png"
         /></a>
-        <a href="tel:85231050156" class="fb-button" target="_blank"
-          ><img src="/static/Images/sidebar/phone.png"
+        <a href="#" class="fb-button" target="_blank"
+          ><img src="/static/Images/pc/pc_42.png"
         /></a>
-        <a href="mailto:info@hktaste.com.hk" class="fb-button"
-          ><img src="/static/Images/sidebar/news.png"
+        <a href="mailto:enquiry@gicdentalhk.com" class="fb-button"
+          ><img src="/static/Images/pc/pc_44.png"
         /></a>
       </span>
     </div>
@@ -31,7 +31,7 @@
         <div class="ctrlq fb-close"></div>
         <div
           class="fb-page"
-          data-href="https://www.facebook.com/intimexhk/"
+          data-href="https://www.facebook.com/gicdental/"
           data-tabs="messages"
           data-width="360"
           data-height="400"
@@ -40,19 +40,19 @@
           data-show-facepile="false"
         >
           <blockquote
-            cite="https://www.facebook.com/intimexhk/"
+            cite="https://www.facebook.com/gicdental/"
             class="fb-xfbml-parse-ignore"
           ></blockquote>
         </div>
         <div class="fb-credit">
-          <a href="https://www.facebook.com/intimexhk/" target="_blank"
-            >Facebook Chat Widget by intimex</a
+          <a href="https://www.facebook.com/gicdental/" target="_blank"
+            >Facebook Chat Widget by GIC</a
           >
         </div>
         <div id="fb-root"></div>
       </div>
       <a
-        href="https://www.facebook.com/intimexhk/"
+        href="https://www.facebook.com/gicdental/"
         title="Send us a message on Facebook"
         class="ctrlq fb-button"
       ></a>

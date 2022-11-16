@@ -1,6 +1,7 @@
 <template>
   <div id="container" class="home">
     <ins-banner :page="'Home'" :initSwiper="true" />
+    <ins-about-us />
   </div>
 </template>
 
@@ -8,7 +9,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({
   components: {
-    InsBanner: () => import('@/components/base/InsBanner.vue')
+    InsBanner: () => import('@/components/base/InsBanner.vue'),
+    InsAboutUs: () => import('@/components/business/home/InsAboutUs.vue')
   }
 })
 export default class InsHome extends Vue {

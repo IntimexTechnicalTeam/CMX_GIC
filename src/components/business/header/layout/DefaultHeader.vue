@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -64,6 +64,10 @@ export default class DefaultHeader extends Vue {
 
   get isMobile () {
     return this.$store.state.isMobile;
+  }
+  @Watch('$route', { deep: true })
+  onRouteChange () {
+    this.$store.dispatch('isShowMenu', false);
   }
 }
 </script>
