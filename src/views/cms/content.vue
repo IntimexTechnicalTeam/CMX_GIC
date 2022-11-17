@@ -1,14 +1,14 @@
 <template>
   <div id="container">
     <div class="CmsContent">
-      <div class="rightContent">
-        <Location LocationTips="您的当前位置：" Homepage="首页" :Column="content.Category.Name" :Title="content.Title"></Location>
-
         <!-- 联络我们页面 -->
-        <div v-if="content.Key=='ContactUs'">
+        <div v-if="content.Key=='NewContactUs'">
+         <div class="TopBanner"
+         v-bind:style="{backgroundImage:'url(' + content.Cover + ')', backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundSize: 'cover'}"
+         >
+         <div class="BottomText">{{content.Title}}</div>
+         </div>
           <div v-html="content.Body"></div>
-
-          <hr>
 
           <div class="Form">
             <RNPForm formKey="ContactUs" />
@@ -20,7 +20,6 @@
           <h1 class="CmsContentTitle">{{content.Title}}</h1>
           <p v-html="content.Body"></p>
         </div>
-      </div>
       <div class="clear"></div>
     </div>
   </div>
@@ -41,7 +40,7 @@ export default class InsCmsContent extends Vue {
     this.$Api.cms.getContentByDevice({ ContentId: this.id, IsMobile: this.isMobile }).then(result => {
       this.content = result.CMS;
       // this.$HiddenLayer();
-
+      console.log(this.content, 'this.contentthis.content');
       this.$nextTick(() => {
         if (result.CMS.Title) document.title = result.CMS.Title;
         (document.getElementsByName('keywords')[0] as any).content = result.CMS.SeoKeyword;
@@ -195,39 +194,64 @@ export default class InsCmsContent extends Vue {
     text-align: center;
     margin-top: 30px;
   }
-  .rightContent {
+  .CmsContent {
     width: 100%;
     position: relative;
     margin-bottom: 30px;
+    .TopBanner {
+      height: 20rem;
+      position: relative;
+      .BottomText {
+        position: absolute;
+        bottom: -3rem;
+        border: 1px solid #fff;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: .5rem 3rem;
+        letter-spacing: 1px;
+        font-size: 1.6rem;
+        color: #fff;
+        border-radius: 2rem;
+        text-transform: uppercase;
+        font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
+        background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+      }
+    }
   }
 
   .Form {
     /deep/ .RNPForm.default {
       background-color: #fff;
       .FormMain {
-        min-width: auto;
+        width: 90%;
 
         #content {
           .btn.save {
             border: 0;
             width: 100%;
-            background-color: @base_color;
+            background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
             border-radius: 0;
-            font-size: 1.1rem;
-            height: 3.2rem;
+            font-size: 1.6rem;
+            height: 3.5rem;
             margin: 0;
+            border-radius: 3rem;
           }
 
           #Anwers {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-
             .form-group {
               padding: 0;
               border: 0;
               width: 100%;
-
+              .control-label {
+                margin-bottom: 0px;
+                color: #666;
+                span {
+                  color: @base_color!important;
+                }
+              }
               .control-label-remark {
                 display: none;
               }
@@ -248,31 +272,51 @@ export default class InsCmsContent extends Vue {
               fieldset {
                 &.text {
                   input[type="text"] {
-                    border: 1px solid #ccc;
-                    padding: 0.8rem 1.3rem;
-                    font-size: 1rem;
+                    border: 1px solid #e6e6e6;
+                    padding: 1rem 1.3rem;
+                    font-size: 1.2rem;
                     box-sizing: border-box;
+                    border-radius: 3px;
+                    &:focus {
+                      border: 1px solid @base_color;
+                    }
                   }
                 }
 
                 &.email {
                   input[type="email"] {
-                    border: 1px solid #ccc;
-                    padding: 0.8rem 1.3rem;
-                    font-size: 1rem;
+                    border: 1px solid #e6e6e6;
+                    padding: 1rem 1.3rem;
+                    font-size: 1.2rem;
                     box-sizing: border-box;
+                    border-radius: 3px;
+                    &:focus {
+                      border: 1px solid @base_color;
+                    }
                   }
                 }
 
                 &.textarea {
                   textarea {
                     height: 9rem;
-                    border: 1px solid #ccc;
+                    border: 1px solid #e6e6e6;
                     padding: 1.3rem;
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                     box-sizing: border-box;
+                    border-radius: 3px;
+                    &:focus {
+                      border: 1px solid @base_color;
+                    }
                   }
                 }
+              }
+            }
+            p[name="error"] {
+              color: @base_color;
+            }
+            .only_tilte {
+              .control-label {
+                color: @base_color;
               }
             }
           }

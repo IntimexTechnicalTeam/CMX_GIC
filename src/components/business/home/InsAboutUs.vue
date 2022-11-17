@@ -15,11 +15,11 @@
   <!-- FAQ -->
   <div class="FAQ">
     <div class="InnerBox">
-      <p class="Toptitle"><span class="greenFont">{{$t('Gic.FAQtitleA')}}</span><span class="blackFont">{{$t('Gic.FAQtitleB')}}</span></p>
+      <p class="Toptitle"><span class="greenFont"  :class="currentlang==='C'?'chi':''">{{$t('Gic.FAQtitleA')}}</span><span class="blackFont" :class="currentlang==='C'?'chi':''">{{$t('Gic.FAQtitleB')}}</span></p>
       <div class="perList">
-          <router-link to="/" class="tp1"><span>{{$t('Gic.FAQtipsA')}}</span></router-link>
-          <router-link to="/" class="tp2"><span>{{$t('Gic.FAQtipsB')}}</span></router-link>
-          <router-link to="/" class="tp3"><span>{{$t('Gic.FAQtipsC')}}</span></router-link>
+          <router-link to="/cms/catDetail/40123" class="tp1"><span>{{$t('Gic.FAQtipsA')}}</span></router-link>
+          <router-link to="/cms/catDetail/40124" class="tp2"><span>{{$t('Gic.FAQtipsB')}}</span></router-link>
+          <router-link to="/cms/catDetail/40125" class="tp3"><span>{{$t('Gic.FAQtipsC')}}</span></router-link>
       </div>
       <p class="facebookHtml" v-html="Facebook.Body"></p>
     </div>
@@ -86,7 +86,9 @@ export default class CmxAboutUs extends Vue {
   get isMobile () {
     return this.$store.state.isMobile;
   }
-
+  get currentlang () {
+    return this.$i18n.locale;
+  }
   mounted () {
     this.getContent();
   }
@@ -131,7 +133,7 @@ export default class CmxAboutUs extends Vue {
               color: #fff;
             }
             p{
-              font-size: 1.2rem;
+              font-size: 1.4rem;
               color: #fff;
               line-height: 1.6rem;
               margin-bottom: 1rem;
@@ -255,7 +257,7 @@ export default class CmxAboutUs extends Vue {
           }
           .topTips {
             color: #666;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             text-align: center;
           }
           .titleBold {
@@ -287,8 +289,6 @@ export default class CmxAboutUs extends Vue {
                 }
               }
               .desc {
-                padding-left: 1rem;
-                padding-right: 1rem;
                 text-align: center;
                 font-size: 1.4rem;
                 line-height: 1.6rem;
@@ -331,12 +331,15 @@ export default class CmxAboutUs extends Vue {
           }
           .greenFont {
             color: @base_color;
-            margin-right: .5rem;
             -webkit-text-stroke: 1px #fff;
           }
           .blackFont {
             color: #000;
              -webkit-text-stroke: 1px #fff;
+          }
+          .chi {
+            font-size: 2.4rem!important;
+            font-weight: 700;
           }
 
         }

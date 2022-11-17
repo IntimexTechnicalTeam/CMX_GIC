@@ -16,14 +16,12 @@
                 </ul>
             </div>
          </div>
-         <p class="CateTitle">{{CateTitle}}</p>
          <div class="BodyContent">
-            <p class="titleFont">{{Description}}</p>
+            <p class="titleFont">{{CateTitle}}</p>
             <div class="perData" v-for="(v,index) in contentList" :key="index">
-                <p class="perTitle"><em class="icon"></em>{{v.Title}}</p>
+                <p class="perTitle">{{v.Title}}</p>
                 <p class="perContent" v-html="v.Body"></p>
             </div>
-            <p class="bottmBody" v-html="BottomContent"></p>
          </div>
     </div>
 </template>
@@ -34,9 +32,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class InsCatLayout1 extends Vue {
     ImagePath:string='';
     MeunList:any=[];
-    Description:string='';
     CateTitle:string='';
-    BottomContent:string='';
     contentList:any=[];
     currentPage:number= 1; // 当前页
     pageSize:number= 12; // 每页显示条目个数
@@ -49,9 +45,7 @@ export default class InsCatLayout1 extends Vue {
     }
     getCategoryByDeviceVoid (val) {
       this.$Api.cms.getCategoryByDevice({ CatId: val, IsMobile: this.isMobile }).then((result) => {
-        this.Description = result.Description;
         this.CateTitle = result.Name;
-        this.BottomContent = result.Content;
       });
     }
     // 获取cms该id下所有的cms
@@ -135,84 +129,122 @@ export default class InsCatLayout1 extends Vue {
           }
         }
     }
-    .CateTitle {
-        width: 90%;
-        margin: 0 auto;
-        font-family: 'Baloo2-ExtraBold', 'Microsoft YaHei' !important;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-        text-align: center;
-        color: #393e46;
-        margin-top: 2rem;
-    }
     .BodyContent {
         width: 90%;
         margin: 0 auto;
+        padding-top: 3rem;
         padding-bottom: 3rem;
-        border-radius: 30px;
-        border: 1px solid @base_color;
-        margin-top: 1rem;
         .titleFont {
+            font-family: 'Baloo2-ExtraBold', 'Microsoft YaHei' !important;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            text-align: center;
+            color: #393e46;
+            margin-bottom: 2rem;
+        }
+        .perData {
+            border: 1px solid @base_color;
+            border-radius: 30px;
+            margin-bottom: 3rem;
+            .perTitle {
                 border-radius: 30px;
+                height: 4rem;
                 background: @base_color;
                 color: #fff;
                 text-align: center;
-                font-size: 1.3rem;
-                line-height:1.6rem;
-                display: flex;
-                width: calc(100% - 2rem);
-                padding: .5rem 1rem;
-                align-items: center;
-                justify-content: center;
-                font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
-                margin-bottom: 2rem;
-        }
-        .perData {
-            width: 90%;
-            margin: 0 auto;
-            margin-bottom: 2rem;
-            .perTitle {
-                color: @base_color;
                 font-size: 1.4rem;
                 line-height:1.8rem;
                 display: flex;
-                justify-content: flex-start;
-                font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
-                .icon {
-                    width: 1.5rem;
-                    height: 1.5rem;
-                    background: url('/static/images/pc/active.png') no-repeat center center;
-                    background-size: 1.5rem;
-                    display: inline-block;
-                    margin-right: .5rem;
-                }
+                width: calc(100% - 4rem);
+                padding: 0px 2rem;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
             }
             .perContent {
-                /deep/ p{
-                    font-size: 1.4rem;
-                    line-height: 1.8rem;
-                    text-align: left;
-                    color: #666666;
-                }
-            }
-        }
-        .bottmBody {
-            width: 90%;
-            margin: 0 auto;
-            /deep/ .QuestionsC {
-                .normalText {
-                    font-size: 1.4rem;
-                    line-height: 1.8rem;
-                    text-align: center;
-                    color: #666666;
-                    margin-bottom: 2rem;
-                    font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
-                    .colortext {
-                        color: @base_color;
+                /deep/ .FaqMain {
+                    padding: 1rem;
+                    .picArry {
+                        width: 100%;
+                        display: inline-block;
+                        .top {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                            align-items: center;
+                            .tp {
+                                width: 49%;
+                                display: flex;
+                                font-size: 1.2rem;
+                                color: @base_color;
+                                line-height: 1.4rem;
+                                align-items: center;
+                                margin-bottom: 1rem;
+                                em {
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                    background: url('/static/images/pc/active.png') no-repeat center center;
+                                    background-size: 1.5rem;
+                                    display: inline-block;
+                                    margin-right: .5rem;
+                                }
+
+                            }
+                        }
+                         .bottom {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            .tp {
+                                width: 100%;
+                                display: flex;
+                                font-size: 1.2rem;
+                                color: @base_color;
+                                line-height: 1.4rem;
+                                em {
+                                  width: 1.5rem;
+                                  height: 1.5rem;
+                                  background: url('/static/images/pc/active.png') no-repeat center center;
+                                  background-size: 1.5rem;
+                                  display: inline-block;
+                                  margin-right: .5rem;
+                                }
+
+                            }
+                        }
                     }
-                }
-                .bottomImg {
-                    width: 100%;
+                    .normalText {
+                        font-size: 1.4rem;
+                        text-align: center;
+                        line-height: 1.8rem;
+                        color: #666666;
+                        margin-bottom: 2rem;
+                       .clickHere {
+                            color: @base_color;
+                        }
+                    }
+                    .weightText {
+                        font-size: 1.4rem;
+                        text-align: center;
+                        line-height: 1.8rem;
+                        color: #666666;
+                        margin-bottom: 2rem;
+                        font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
+                        .clickHere {
+                            color: @base_color;
+                        }
+                    }
+                    .colorText {
+                        font-size: 1.4rem;
+                        text-align: center;
+                        line-height: 1.8rem;
+                        color:  @base_color;
+                        margin-bottom: 1rem;
+                        font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
+                    }
                     img {
                         width: 100%;
                     }

@@ -2,11 +2,29 @@
     <div class="header-box">
         <!-- PC头部 -->
         <div class="pcHeader" v-if="!isMobile">
+           <div class="topbar">
+              <div class="left">
+                <div class="perlist">
+                    <img src="/static/images/pc/pc_36.png"><a class="text" href="tel:85237039230">3703 9230</a>
+                </div>
+                <div class="perlist">
+                  <img src="/static/images/pc/pc_37.png">
+                  <span class="text">1408 Melbourne Plaza, 33 Queen’s Road Central, Hong Kong</span>
+                </div>
+              </div>
+              <div class="right">
+                    <ins-lang-switch  />
+                    <a href="#" class="fb"><img src="/static/images/pc/pc_35.png"></a>
+              </div>
+           </div>
             <div class="flex-box">
-              <ins-logo />
-               <ins-menu/>
+              <div class="left">
+                <img src="/static/images/pc/pc_38.png">
+              </div>
+              <div class="right">
+                  <ins-menu/>
+              </div>
             </div>
-            <ins-lang-switch  />
         </div>
         <!-- Mobile头部 -->
         <div class="mobileHeader" v-else>
@@ -75,52 +93,86 @@ export default class DefaultHeader extends Vue {
 <style scoped lang="less">
 .pc {
     .header-box {
-      background-color: @base_color;
-      width: 86.5%;
-      min-width:1100px;
+      background-color:#fff;
+      width: 100%;
       margin: 0 auto;
       position: relative;
-
+      .topbar {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .left {
+          width: 75%;
+          padding-top: 10px;
+          .perlist {
+            display: flex;
+            align-items: center;
+            float: left;
+            margin-right: 10px;
+            font-size: 18px;
+            color: #999999;
+            a{
+              font-size: 18px;
+              color: #999999;
+            }
+          }
+        }
+        .right {
+          width: 20%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          /deep/ .langSwitch {
+            display: inline-block;
+            margin-right: 20px;
+          }
+          .fb {
+            display: inline-block;
+          }
+        }
+      }
       .flex-box {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        min-height: 120px;
-        padding: 0 1.6% 0 4.2%;
         box-sizing: border-box;
-
-        .logo {
-          width: 13%;
-          min-width: 170px;
-        }
-      }
-
-      /deep/ .langSwitch {
-        position: absolute;
-        font-size: 17px;
-        color: #fff;
-        top: 10px;
-        right: 20px;
-        p {
-          &.active {
-            color: #d5ee1f;
-            font-weight: bold;
+        width: 1200px;
+        margin: 0 auto;
+        .left {
+          width: 313px;
+          position: relative;
+          img {
+            position: absolute;
+            bottom: -3rem;
+            z-index: 99;
+            width: 100%;
           }
         }
+        .right {
+          display: flex;
+        }
       }
-
       /deep/ .nav_menu {
-        padding-top: 70px;
-        max-width: 75%;
+        max-width: 100%;
         >ul {
+          margin-bottom: .5rem;
           >li {
             width: auto;
-            padding: 18px 42px;
 
             a {
-              color: #fff;
+              color: #4c4c4c;
               font-size: 18px;
-              padding: 0;
+              padding: .5rem 2rem;
+              font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
+              text-transform: uppercase;
+              &:hover {
+                background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+                border-radius: 3rem;
+                color: #fff;
+              }
             }
 
             > ul {

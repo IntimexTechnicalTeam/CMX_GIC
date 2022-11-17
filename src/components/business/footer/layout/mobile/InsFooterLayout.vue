@@ -180,7 +180,6 @@ export default class InsFooterLayout extends Vue {
        }
        .color {
         color: @base_color;
-        margin-right: .5rem;
        }
        .normal {
         color: #393e46;

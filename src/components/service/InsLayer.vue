@@ -48,7 +48,7 @@ export default class InsLayer extends Vue {
   }
   public showL () {
     this.show = true;
-    /*     setTimeout(() => { window.scrollTo(0, 0); document.body.style.overflowY = 'hidden'; }, 50); */
+    /* setTimeout(() => { window.scrollTo(0, 0); document.body.style.overflowY = 'hidden'; }, 50); */
   }
 }
 </script>

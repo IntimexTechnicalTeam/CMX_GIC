@@ -32,11 +32,14 @@ module.exports = {
     defaultLang: 'E', // 設置網站默認語言
     // 自定義語言列表 ps: 如有添加語言，請在目錄 /src/lang 下添加對應語言包文件和修改index.ts相關設置代碼
     langList: [{
-      name: '繁中',
+      name: '繁',
       value: 'C'
     }, {
       name: 'ENG',
       value: 'E'
+    }, {
+      name: '簡',
+      value: 'S'
     }],
     // 設置是否開啟固定頂部菜單
     // ps: 如開啟，fixedHeader默認獲取DefaultHeader組件，如排版改動不大，可通過組件間傳值showInFixed或css區分控制;

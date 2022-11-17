@@ -1,17 +1,10 @@
 <template>
   <div id="container" class="catDetail">
-    <!-- <ins-banner data="http://lstrehacare.dev.in-store.hk:84/Images/forweb/about_banner.jpg" /> -->
-
     <div class="catContent">
-        <template v-if="cmsCategory.PageStyle === '0' || cmsCategory.PageStyle === '1'">
-          <div v-html="cmsCategory.Content" class="layer"></div>
-        </template>
-
-        <ins-cat-layout2 :catData="cmsCatTree" :cmsData="contentList" @changeCatSelect="changeCatSelect" v-if="cmsCategory.PageStyle === '2'" />
-
-        <ins-cat-layout3 :cmsData="contentList" v-if="cmsCategory.PageStyle === '3'" />
-
-        <ins-cat-layout4 :cmsData="contentList" :pager="pager" v-if="cmsCategory.PageStyle === '4'" />
+        <ins-cat-layout1  v-if="cmsCategory.PageStyle === '0' || cmsCategory.PageStyle === '1'" />
+        <ins-cat-layout2  v-if="cmsCategory.PageStyle === '2'" />
+        <ins-cat-layout3  v-if="cmsCategory.PageStyle === '3'" />
+        <ins-cat-layout4  v-if="cmsCategory.PageStyle === '4'" />
     </div>
   </div>
 </template>
@@ -20,7 +13,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 @Component({
   components: {
-    // InsBanner: () => import('@/components/base/InsBanner.vue'),
+    InsCatLayout1: () => import('@/components/business/cms/InsCatLayout1.vue'),
     InsCatLayout2: () => import('@/components/business/cms/InsCatLayout2.vue'),
     InsCatLayout3: () => import('@/components/business/cms/InsCatLayout3.vue'),
     InsCatLayout4: () => import('@/components/business/cms/InsCatLayout4.vue')
@@ -151,30 +144,3 @@ export default class insNews extends Vue {
     }
 }
 </script>
-<style scoped lang="less">
-.pc {
-    .catDetail {
-        .catContent {
-            width: 1200px;
-            margin: 0 auto;
-            padding: 15px 0;
-
-            .layer {
-                font-size: 16px;
-            }
-        }
-    }
-}
-
-.mobile {
-    .catDetail {
-        .catContent {
-          width: 92%;
-          margin: 2rem auto 5rem;
-            .layer {
-                font-size: 1.2rem;
-            }
-        }
-    }
-}
-</style>

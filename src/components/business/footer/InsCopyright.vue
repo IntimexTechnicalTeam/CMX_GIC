@@ -26,16 +26,18 @@ export default class InsCopyright extends Vue {
     .copyright {
         text-align: center;
         padding: 20px 0;
+
         p {
-            color: #fff;
-            font-size: 14.8px;
             display: inline-block;
+            color: #999999;
+            font-size: 18px;
             vertical-align: middle;
         }
 
         img {
             vertical-align: middle;
             margin-left: 12px;
+            width: 60px;
         }
     }
 }

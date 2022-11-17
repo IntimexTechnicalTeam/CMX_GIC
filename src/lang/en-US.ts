@@ -90,12 +90,12 @@ export default {
   },
   Gic: {
     FAQtitleA: 'Frequently',
-    FAQtitleB: 'asked questions',
+    FAQtitleB: ' asked questions',
     FAQtipsA: 'Questions about gums',
     FAQtipsB: 'Questions about implants',
     FAQtipsC: 'Am I at risk?',
     Contact: 'Contact',
-    Us: 'Us',
+    Us: ' Us',
     OnlineEnquiry: 'Online Enquiry'
   }
 };
