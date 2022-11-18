@@ -19,7 +19,7 @@
            </div>
             <div class="flex-box">
               <div class="left">
-                <img src="/static/images/pc/pc_38.png">
+                <a href="/"><img src="/static/images/pc/pc_38.png"></a>
               </div>
               <div class="right">
                   <ins-menu/>

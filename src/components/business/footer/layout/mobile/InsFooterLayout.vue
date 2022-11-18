@@ -4,7 +4,7 @@
         <p class="BigTitle"><span class="color">{{$t('Gic.Contact')}}</span><span class="normal">{{$t('Gic.Us')}}</span></p>
         <p class="Contact" v-html="footerContact.Body"></p>
         <p class="footerBtn">
-           <router-link to="/">{{$t('Gic.OnlineEnquiry')}}</router-link>
+           <router-link to="/cms/content/20321">{{$t('Gic.OnlineEnquiry')}}</router-link>
         </p>
     </div>
     <div class="footer-box">

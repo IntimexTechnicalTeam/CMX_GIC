@@ -9,20 +9,24 @@
       /></a>
       <span v-show="show">
         <a
-          href="https://api.whatsapp.com/send?phone=85237039230&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B%E6%B3%B0%E7%BE%8E%E7%A7%91%E6%8A%80%E7%9A%84%E6%9C%8D%E5%8B%99"
+          href="https://api.whatsapp.com/send?phone=85237039230&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B"
           target="_blank"
           ><img src="/static/Images/pc/pc_40.png"
         /></a>
         <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/static/Images/pc/pc_41.png"
         /></a>
-        <a href="#" class="fb-button" target="_blank"
+        <a href="javascript:;" class="fb-button" @click="showWechat"
           ><img src="/static/Images/pc/pc_42.png"
         /></a>
         <a href="mailto:enquiry@gicdentalhk.com" class="fb-button"
           ><img src="/static/Images/pc/pc_44.png"
         /></a>
       </span>
+    </div>
+    <!-- 显示wechat -->
+    <div class="wechatBox">
+      <img src="/static/Images/pc/wechat.jpg">
     </div>
     <!-- 显示livechat -->
     <div class="fb-livechat">
@@ -70,6 +74,11 @@ export default class InsSidebar extends Vue {
   show: boolean = false;
   showLivechat () {
     $('.fb-livechat').fadeToggle();
+    $('.wechatBox').hide();
+  }
+  showWechat () {
+    $('.wechatBox').fadeToggle();
+    $('.fb-livechat').hide();
   }
   toTop () {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -144,6 +153,17 @@ export default class InsSidebar extends Vue {
   -webkit-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
   -o-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+}
+.wechatBox {
+    position: fixed;
+    right: 5rem;
+    bottom: 60px;
+    z-index: 99;
+    display: none;
+    width: 250px;
+    img {
+      width: 100%;
+    }
 }
 @media screen and (max-width: 768px) {
   .fb-widget {

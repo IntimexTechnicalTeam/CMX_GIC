@@ -30,13 +30,13 @@ export default {
     UploadSuccessfulText: '上传成功',
     UploadFailText: '上传失败',
     NoFileText: '没有选中文件',
-    UploadLengthText: '最多只能上载{0}文件',
+    UploadLengthText: '最多只能上载{0}档案',
     UploadSizeText: '最多只能上传{0}M',
     PleaseSelect: '请选择',
     SubRecord: '提交纪录',
     ReferenceNum: '参考编号',
     SubmissionDate: '提交日期',
-    Print: '列印',
+    Print: '打印',
     PlsPayWay: '请选择付款方式',
     PreviewTitleText: '请再次确认页面',
     FormatErrorText: '请输入正确电邮地址',
@@ -44,9 +44,9 @@ export default {
   },
   Display: {
     SuccessCase: '成功个案',
-    GeneralQuery: '一般查询',
+    GeneralQuery: '壹般查询',
     OfficeHours: '办公时间',
-    Hour0: '星期一至五：',
+    Hour0: '星期壹至五：',
     Hour1: '早上9时至下午12时,',
     Hour2: '下午1时30分至晚上6时',
     Hour3: '星期六、日及公众期假休息',
@@ -87,5 +87,15 @@ export default {
     Home: '首页',
     Search: '搜索结果',
     ReadMore: '更多'
+  },
+  Gic: {
+    FAQtitleA: '常见',
+    FAQtitleB: '问题',
+    FAQtipsA: '与牙周病相关之疑问',
+    FAQtipsB: '与种植牙相关之疑问',
+    FAQtipsC: '我罹患牙周病之风险有多大？',
+    Contact: '联络',
+    Us: '我们',
+    OnlineEnquiry: '网上查询'
   }
 };

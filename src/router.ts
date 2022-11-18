@@ -3,6 +3,7 @@ import Router from 'vue-router';
 /* Layout */
 import Layout from '@/platform/index.vue';
 import RNPLayout from '@/platform/RNPLayout.vue';
+import VRLayout from '@/platform/VRLayout.vue';
 import i18n from '@/lang';
 
 Vue.use(Router);
@@ -61,6 +62,15 @@ const router = new Router({
         path: 'PayFail/:id',
         name: 'PayFail',
         component: () => import('@/views/payment/payFail.vue')
+      }]
+    },
+    {
+      path: '/',
+      component: VRLayout,
+      children: [{
+        path: 'vr/:key',
+        name: 'vr',
+        component: () => import('@/views/cms/vr.vue')
       }]
     },
     {

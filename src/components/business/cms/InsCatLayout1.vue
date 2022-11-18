@@ -16,13 +16,25 @@
                 </ul>
             </div>
          </div>
-         <div class="BodyContent">
-            <p class="titleFont">{{CateTitle}}</p>
-            <div class="perData" v-for="(v,index) in contentList" :key="index">
-                <p class="perTitle">{{v.Title}}</p>
-                <p class="perContent" v-html="v.Body"></p>
+         <div v-if="isMobile">
+            <div class="BodyContent">
+                <p class="titleFont">{{CateTitle}}</p>
+                <div class="perData" v-for="(v,index) in contentList" :key="index">
+                    <p class="perTitle">{{v.Title}}</p>
+                    <p class="perContent" v-html="v.Body"></p>
+                </div>
             </div>
          </div>
+         <div v-else>
+           <p class="titleFont">{{CateTitle}}</p>
+            <div class="BodyContent">
+                <div class="perData" v-for="(v,index) in contentList" :key="index">
+                    <p class="perTitle">{{v.Title}}</p>
+                    <p class="perContent" v-html="v.Body"></p>
+                </div>
+            </div>
+         </div>
+
     </div>
 </template>
 
@@ -73,14 +85,212 @@ export default class InsCatLayout1 extends Vue {
     mounted () {
       this.getCategoryByDevice();
       this.getContentsByCatId();
-      setTimeout(() => { window.scrollTo(0, 0); document.body.style.overflowY = 'hidden'; }, 50);
+      setTimeout(() => { window.scrollTo(0, 0); }, 50);
     }
 }
 </script>
 
 <style scoped lang="less">
 .pc {
+  .InsCatLayout1 {
+    width: 100%;
+    display: inline-block;
+    .TopBanner {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        height: 400px;
+        .InnerBox {
+          width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          ul {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            li{
+                background: #fff;
+                padding: 0px 1rem;
+                margin-bottom: 1rem;
+                border-radius: 30px;
+                width: 29%;
+                border: 2px solid #fff;
+                a {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  color: @base_color;
+                  font-size: 23px;
+                    span {
+                    width: 2.5rem;
+                    display: inline-block;
+                    margin-right: .5rem;
+                        img {
+                            width: 100%;
+                        }
+                   }
+                }
 
+            }
+            .ActiveBg {
+                background: @base_color;
+                border: 2px solid #fff;
+                a{
+                    color: #fff;
+                }
+            }
+          }
+        }
+    }
+    .titleFont {
+        font-family: 'Baloo2-ExtraBold', 'Microsoft YaHei' !important;
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+        color: #393e46;
+        width: 1200px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        padding-top: 3rem;
+    }
+    .BodyContent {
+        width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-wrap: wrap;
+        .perData {
+            border: 1px solid @base_color;
+            border-radius: 30px;
+            margin-bottom: 3rem;
+            width: 48%;
+            float: left;
+            margin-right: 2%;
+            display: flex;
+            flex-wrap: wrap;
+            &:nth-child(2n) {
+              margin-right: 0px!important;
+            }
+            .perTitle {
+                border-radius: 30px;
+                height: 60px;
+                background: @base_color;
+                color: #fff;
+                text-align: center;
+                font-size: 24px;
+                line-height:28px;
+                display: flex;
+                width: calc(100% - 4rem);
+                padding: 0px 2rem;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
+            }
+            .perContent {
+                /deep/ .FaqMain {
+                    padding: 1rem;
+                    .picArry {
+                        width: 100%;
+                        display: inline-block;
+                        .top {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                            align-items: center;
+                            .tp {
+                                width: 49%;
+                                display: flex;
+                                font-size: 20px;
+                                color: @base_color;
+                                line-height: 26px;
+                                align-items: center;
+                                margin-bottom: 1rem;
+                                em {
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                    background: url('/static/images/pc/active.png') no-repeat center center;
+                                    background-size: 1.5rem;
+                                    display: inline-block;
+                                    margin-right: .5rem;
+                                }
+
+                            }
+                        }
+                         .bottom {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            .tp {
+                                width: 100%;
+                                display: flex;
+                                font-size: 20px;
+                                color: @base_color;
+                                line-height: 26px;
+                                em {
+                                  width: 1.5rem;
+                                  height: 1.5rem;
+                                  background: url('/static/images/pc/active.png') no-repeat center center;
+                                  background-size: 1.5rem;
+                                  display: inline-block;
+                                  margin-right: .5rem;
+                                }
+
+                            }
+                        }
+                    }
+                    .normalText {
+                        font-size: 20px;
+                        text-align: center;
+                        line-height: 26px;
+                        color: #666666;
+                        margin-bottom: 2rem;
+                       .clickHere {
+                            color: @base_color;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    .weightText {
+                        font-size: 20px;
+                        text-align: center;
+                        line-height: 26px;
+                        color: #666666;
+                        margin-bottom: 2rem;
+                        font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
+                        .clickHere {
+                            color: @base_color;
+                             &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    .colorText {
+                        font-size: 20px;
+                        text-align: center;
+                        line-height: 26px;
+                        color:  @base_color;
+                        margin-bottom: 1rem;
+                        font-family: 'Baloo2-Medium', 'Microsoft YaHei' !important;
+                    }
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+    }
+  }
 }
 
 .mobile {
