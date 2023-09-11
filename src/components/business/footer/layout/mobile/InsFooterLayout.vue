@@ -1,7 +1,7 @@
 <template>
   <div id="footer">
     <div class="ContactBox">
-        <p class="BigTitle"><span class="color">{{$t('Gic.Contact')}}</span><span class="normal">{{$t('Gic.Us')}}</span></p>
+        <p class="BigTitle" :class="currentlang!=='E'?'ChiFont':''"><span class="color">{{$t('Gic.Contact')}}</span><span class="normal">{{$t('Gic.Us')}}</span></p>
         <p class="Contact" v-html="footerContact.Body"></p>
         <p class="footerBtn">
            <router-link to="/cms/content/20321">{{$t('Gic.OnlineEnquiry')}}</router-link>
@@ -39,7 +39,9 @@ export default class InsFooterLayout extends Vue {
     this.currentYear = date.getFullYear();
     this.getContent();
   }
-
+  get currentlang () {
+    return this.$i18n.locale;
+  }
   mounted () {}
 }
 </script>
@@ -185,6 +187,11 @@ export default class InsFooterLayout extends Vue {
         color: #393e46;
        }
     }
+    .ChiFont {
+      span {
+        font-weight: 700;
+      }
+    }
     .Contact {
       width: 100%;
       display: inline-block;
@@ -216,7 +223,40 @@ export default class InsFooterLayout extends Vue {
               height: 2rem;
               display: inline-block;
               background: url('/static/images/pc/pc_37.png') no-repeat center center;
-              background-size: 2rem;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpb {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_36.png') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpc {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_22.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpd {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_26.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpe {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_27.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
             }
             .fontTitle {
                 font-family: 'Baloo2-Bold', 'Microsoft YaHei'!important;
@@ -238,6 +278,13 @@ export default class InsFooterLayout extends Vue {
             margin-bottom: 2rem;
           }
         }
+        .ChiFont {
+          .HeadTitle {
+            .fontTitle {
+              font-weight: 700;
+            }
+          }
+        }
       }
     }
     .footerBtn {
@@ -253,12 +300,9 @@ export default class InsFooterLayout extends Vue {
         line-height: 4rem;
         color: #fff;
         text-align: center;
-        background: -webkit-linear-gradient(left , rgb(207, 215, 1) , rgb(138, 179, 67) 100%);
+        background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
       }
     }
   }
- .footer-box {
-
- }
 }
 </style>

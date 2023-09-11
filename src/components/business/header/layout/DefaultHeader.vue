@@ -9,17 +9,18 @@
                 </div>
                 <div class="perlist">
                   <img src="/static/images/pc/pc_37.png">
-                  <span class="text">1408 Melbourne Plaza, 33 Queen’s Road Central, Hong Kong</span>
+                  <a class="text" :href="googleAddress" target="_blank">{{$t('Gic.topAddress')}}</a>
                 </div>
               </div>
               <div class="right">
                     <ins-lang-switch  />
-                    <a href="#" class="fb"><img src="/static/images/pc/pc_35.png"></a>
+                    <a href="https://www.facebook.com/gicdental/" class="fb"  target="_blank"><img src="/static/images/pc/pc_35.png"></a>
+                    <span class="loginBtn"><InsLogin/></span>
               </div>
            </div>
             <div class="flex-box">
               <div class="left">
-                <a href="/"><img src="/static/images/pc/pc_38.png"></a>
+                <a href="/" class="toplogo"><img src="/static/images/pc/pc_38.png"></a>
               </div>
               <div class="right">
                   <ins-menu/>
@@ -32,11 +33,11 @@
               <div class="left"><img src="/static/images/pc/pc_36.png"><a class="text" href="tel:85237039230">3703 9230</a></div>
               <div class="right">
                   <img src="/static/images/pc/pc_37.png">
-                  <span class="text">1408 Melbourne Plaza, 33 Queen’s Road Central, Hong Kong</span>
+                  <a class="text" :href="googleAddress" target="_blank">{{$t('Gic.topAddress')}}</a>
               </div>
            </div>
            <div class="flex-box">
-            <ins-logo />
+              <a href="/" class="toplogo"><img src="/static/images/pc/pc_38.png"></a>
             <img class="slide-menu" :src="menuShow?'/static/Images/mobile/mobile_01.jpg':'/static/Images/mobile/meun.jpg'" @click="showSlideMenu" />
             </div>
         </div>
@@ -51,14 +52,15 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   components: {
     InsLogo: () => import('@/components/base/InsLogo.vue'),
     InsLangSwitch: () => import('@/components/business/header/InsLangSwitch.vue'),
-    InsMenu: () => import('@/components/business/header/InsMenu.vue')
+    InsMenu: () => import('@/components/business/header/InsMenu.vue'),
+    InsLogin: () => import('@/components/business/header/InsLogin.vue')
   }
 })
 export default class DefaultHeader extends Vue {
   @Prop() private showInFixed!: boolean;
 
   key: string = '';
-
+  googleAddress='https://www.google.com/maps/place/Gum+%26+Implant+Dental+Center/@22.28224,114.156599,15z/data=!4m5!3m4!1s0x0:0x94efd9375593a318!8m2!3d22.28224!4d114.156599?hl=zh-HK';
   showSlideMenu () {
     let isShow = !JSON.parse(JSON.stringify(this.menuShow));
     this.$store.dispatch('isShowMenu', isShow);
@@ -93,10 +95,15 @@ export default class DefaultHeader extends Vue {
 <style scoped lang="less">
 .pc {
     .header-box {
-      background-color:#fff;
+      background-size: cover;
       width: 100%;
       margin: 0 auto;
       position: relative;
+      background: #fff;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, .25);
+      z-index: 99999;
       .topbar {
         width: 1200px;
         margin: 0 auto;
@@ -129,6 +136,9 @@ export default class DefaultHeader extends Vue {
             display: inline-block;
             margin-right: 20px;
           }
+          .loginBtn {
+            position: relative;
+          }
           .fb {
             display: inline-block;
           }
@@ -144,11 +154,16 @@ export default class DefaultHeader extends Vue {
         .left {
           width: 313px;
           position: relative;
-          img {
+          .toplogo {
             position: absolute;
-            bottom: -3rem;
+            bottom: -55px;
             z-index: 99;
-            width: 100%;
+            padding: 10px;
+            background: url(/static/images/pc/logobg.png) no-repeat center center;
+            background-size: cover;
+            img {
+              width: 100%;
+            }
           }
         }
         .right {
@@ -169,7 +184,7 @@ export default class DefaultHeader extends Vue {
               font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
               text-transform: uppercase;
               &:hover {
-                background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+               background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
                 border-radius: 3rem;
                 color: #fff;
               }
@@ -206,6 +221,15 @@ export default class DefaultHeader extends Vue {
 
 .mobile {
     .header-box {
+      background-size: cover;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      background: #fff;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, .25);
+      z-index: 99999;
       .topbar {
         width: 90%;
         margin: 0 auto;
@@ -243,26 +267,29 @@ export default class DefaultHeader extends Vue {
         }
       }
       .flex-box {
-        background-color:#fff;
         position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 5rem;
         width: 100%;
-        .logo {
-          width: 20rem;
-          position: absolute;
-          bottom: -2rem;
-          left: 0px;
-          z-index: 999999;
-        }
-
+       .toplogo {
+            position: absolute;
+            bottom: -2.2rem;
+            z-index: 99;
+            padding: 10px;
+            background: url(/static/images/pc/logobg.png) no-repeat center center;
+            background-size: cover;
+            width: 20rem;
+            img {
+              width: 100%;
+            }
+          }
         .slide-menu {
           cursor: pointer;
           position: absolute;
           top: 1rem;
-          right:1rem;
+          right:1.5rem;
           z-index: 99999;
           outline: 0;
         }

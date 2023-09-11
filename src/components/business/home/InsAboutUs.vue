@@ -2,14 +2,17 @@
 <div class="MainContainer">
   <!-- AboutUs -->
   <div class="AboutUs">
+       <div id="HomeAbout" class="HomeAbout"></div>
        <p class="AboutUsHtml" v-html="AboutUs.Body"></p>
   </div>
     <!-- OurDentist -->
+  <div id="OurDentist" class="OurDentistContaier"></div>
   <div class="OurDentist">
        <p class="OurDentistHtml" v-html="OurDentist.Body"></p>
   </div>
     <!-- OurServices -->
   <div class="OurServices">
+        <div id="OurServices" class="OurServicesContaier"></div>
        <p class="OurServicesHtml" v-html="OurServices.Body"></p>
   </div>
   <!-- FAQ -->
@@ -33,9 +36,9 @@
         </div>
         <div class="right">
              <div class="perList">
-              <router-link to="/cms/catDetail/40123" class="tp1"><span>{{$t('Gic.FAQtipsA')}}</span></router-link>
-              <router-link to="/cms/catDetail/40124" class="tp2"><span>{{$t('Gic.FAQtipsB')}}</span></router-link>
-              <router-link to="/cms/catDetail/40125" class="tp3"><span>{{$t('Gic.FAQtipsC')}}</span></router-link>
+              <router-link to="/cms/catDetail/40123" class="tp1" :class="{'ChiFont':currentlang!=='E'}"><span>{{$t('Gic.FAQtipsA')}}</span></router-link>
+              <router-link to="/cms/catDetail/40124" class="tp2" :class="{'ChiFont':currentlang!=='E'}"><span>{{$t('Gic.FAQtipsB')}}</span></router-link>
+              <router-link to="/cms/catDetail/40125" class="tp3" :class="{'ChiFont':currentlang!=='E'}"><span>{{$t('Gic.FAQtipsC')}}</span></router-link>
           </div>
         </div>
       </div>
@@ -122,6 +125,9 @@ export default class CmxAboutUs extends Vue {
   .MainContainer {
     width: 100%;
     display: inline-block;
+    #HomeAbout, #OurDentist,#OurServices{
+      height: 120px;
+    }
     .AboutUs {
       width: 100%;
       display: inline-block;
@@ -136,7 +142,8 @@ export default class CmxAboutUs extends Vue {
           background-size: 100% 100%;
           height: 450px;
           .Innerbox {
-            width: 48%;
+            width: 46%;
+            margin-right: 2%;
             padding-top: 5rem;
             float: right;
             .title {
@@ -152,6 +159,15 @@ export default class CmxAboutUs extends Vue {
               margin-bottom: 1rem;
             }
           }
+          .AboutChi {
+            .title {
+              font-size: 30px!important;
+              font-weight: 700;
+            }
+            p {
+              font-size: 18px;
+            }
+          }
         }
       }
     }
@@ -160,8 +176,7 @@ export default class CmxAboutUs extends Vue {
       display: inline-block;
       background: url('/static/images/pc/pc_11.jpg') no-repeat center center;
       background-size: 100% 100%;
-      padding-bottom: 2rem;
-      margin-top: 2rem;
+      padding-bottom: 3rem;
       .OurDentistHtml {
         width: 810px;
         margin: 0 auto;
@@ -169,7 +184,7 @@ export default class CmxAboutUs extends Vue {
         padding-left: 10px;
         padding-right: 10px;
         border-radius: 30px;
-        margin-top: 2rem;
+        margin-top: 3rem;
         /deep/ .OurDentistMain {
           background: #fafcf4;
           border-radius: 30px;
@@ -191,7 +206,7 @@ export default class CmxAboutUs extends Vue {
               }
           }
           .Innerbox {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             padding-top: 1rem;
             display: flex;
@@ -229,13 +244,28 @@ export default class CmxAboutUs extends Vue {
             }
           }
         }
+        /deep/ .ChiFont {
+          .title {
+            span {
+              font-weight: 700;
+            }
+          }
+          .HeadTitle {
+            font-weight: 700;
+            font-size: 24px!important;
+          }
+          .ColorText {
+            font-size: 22px!important;
+          }
+          .NormalText {
+            font-size: 18px!important;
+          }
+        }
       }
     }
     .OurServices {
       width: 100%;
       display: inline-block;
-      padding-top: 3rem;
-      padding-bottom: 3rem;
       .OurServicesHtml {
         width: 1200px;
         display: flex;
@@ -335,6 +365,32 @@ export default class CmxAboutUs extends Vue {
             }
           }
         }
+        /deep/ .ChiFont {
+          .BigTitle {
+            span {
+              font-weight: 700;
+            }
+          }
+          .titleBold {
+            font-weight: 700;
+            color: #393e46!important;
+            font-size: 22px!important;
+          }
+          .perData {
+            .desc {
+              font-size: 16px!important;
+            }
+          }
+          .topTips {
+            font-size: 18px!important;
+          }
+          .bottomTips {
+            font-size: 22px!important;
+            a{
+              font-size: 22px!important;
+            }
+          }
+        }
       }
     }
     .FAQ {
@@ -424,6 +480,11 @@ export default class CmxAboutUs extends Vue {
                   margin-left: 30%;
                 }
               }
+              .ChiFont {
+                span {
+                  font-size: 22px!important;
+                }
+              }
             }
          }
         }
@@ -461,10 +522,18 @@ export default class CmxAboutUs extends Vue {
   .MainContainer {
     width: 100%;
     display: inline-block;
+     #HomeAbout{
+      height: 10rem;
+    }
+    #OurDentist{
+      height: 11rem;
+    }
+    #OurServices{
+      height: 13rem;
+    }
     .AboutUs {
       width: 100%;
       display: inline-block;
-      margin-top: 2rem;
       .AboutUsHtml {
         width: 90%;
         margin: 0 auto;
@@ -491,6 +560,11 @@ export default class CmxAboutUs extends Vue {
               margin-bottom: 1rem;
             }
           }
+          .AboutChi {
+            .title {
+              font-weight: 700;
+            }
+          }
         }
       }
     }
@@ -499,8 +573,8 @@ export default class CmxAboutUs extends Vue {
       display: inline-block;
       background: url('/static/images/mobile/mobile_06.jpg') no-repeat center center;
       background-size: 100% 100%;
-      padding-bottom: 2rem;
-      margin-top: 2rem;
+      padding-bottom: 3rem;
+      padding-top: 3rem;
       .OurDentistHtml {
         width: 90%;
         margin: 0 auto;
@@ -508,7 +582,6 @@ export default class CmxAboutUs extends Vue {
         padding-left: 10px;
         padding-right: 10px;
         border-radius: 30px;
-        margin-top: 2rem;
         /deep/ .OurDentistMain {
           background: #fafcf4;
           border-radius: 30px;
@@ -566,12 +639,27 @@ export default class CmxAboutUs extends Vue {
             }
           }
         }
+        /deep/ .ChiFont {
+          .title {
+            span{
+              font-weight: 700;
+            }
+          }
+          .HeadTitle {
+            font-weight: 700;
+          }
+          .ColorText {
+            font-size: 1.3rem!important;
+          }
+          .NormalText {
+            font-size: 1.4rem!important;
+          }
+        }
       }
     }
     .OurServices {
       width: 100%;
       display: inline-block;
-      padding-top: 3rem;
       padding-bottom: 3rem;
       .OurServicesHtml {
         width: 90%;
@@ -658,6 +746,16 @@ export default class CmxAboutUs extends Vue {
               color: @base_color;
             }
         }
+        }
+        /deep/ .ChiFont {
+          .innerText {
+            span {
+              font-weight: 700;
+            }
+          }
+          .titleBold {
+            font-weight: 700;
+          }
         }
       }
     }

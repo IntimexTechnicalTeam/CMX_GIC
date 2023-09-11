@@ -115,6 +115,109 @@ const router = new Router({
         name: 'photoList',
         component: () => import('@/views/photo/photoListN.vue')
       }]
+    },
+    {
+      path: '/account',
+      component: Layout,
+      children: [{
+        path: 'login',
+        name: 'login',
+        component: () => import('@/components/business/account/InsLoginN.vue')
+      },
+      {
+        path: 'Register',
+        name: 'Register',
+        component: () => import('@/components/business/account/InsRegister.vue')
+      },
+      {
+        path: 'RegisterSuccess',
+        name: 'RegisterSuccess',
+        component: () => import('@/components/business/account/Reg/InsRegSuccess.vue')
+      },
+      {
+        path: 'forgetPassword',
+        name: 'forgetPassword',
+        component: () => import('@/components/business/account/InsForgetPassword.vue')
+      },
+      {
+        path: 'ModifyPassword',
+        name: 'ModifyPassword',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/InsModifyPassword.vue')
+      },
+      {
+        path: 'memberInfo',
+        name: 'memberInfo',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/InsMemberInfo.vue')
+      },
+      {
+        path: 'ResetPwd/:id/:code',
+        name: 'ResetPwd',
+        component: () => import('@/components/business/account/InsResetPwd.vue')
+      },
+      {
+        path: 'notification',
+        name: 'notification',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "account" */ '@/components/business/account/InsNotification.vue'
+          )
+      },
+      {
+        path: 'MyApplications',
+        name: 'MyApplications',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/MyApplications.vue')
+      },
+      {
+        path: 'MyCPDRecords',
+        name: 'MyCPDRecords',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/MyCPDRecords.vue')
+      },
+      {
+        path: 'MyMailBox',
+        name: 'MyMailBox',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/MyMailBox.vue')
+      },
+      {
+        path: 'PersonalInformation',
+        name: 'PersonalInformation',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/PersonalInformation.vue')
+      },
+      {
+        path: 'MemberMeun',
+        name: 'MemberMeun',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/MemberMeun.vue')
+      }, {
+        path: 'MyMailBoxDetail/:id',
+        name: 'MyMailBox',
+        meta: {
+          requiresAuth: true // 是否进行登录验证
+        },
+        component: () => import('@/components/business/account/Personal/MyMailDetail.vue')
+      } ]
     }
   ]
 });

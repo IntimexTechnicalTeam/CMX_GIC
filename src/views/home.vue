@@ -40,6 +40,7 @@ export default class InsHome extends Vue {
 .pc {
   .home {
     /deep/ .banner {
+      margin-top: -30px;
       .swiper-pagination {
         bottom: 40px;
 
@@ -63,9 +64,7 @@ export default class InsHome extends Vue {
 .mobile {
   .home {
     .banner{
-      // min-height: 100vh;
-      background-color: white;
-
+      margin-top: -30px;
       /deep/ .swiper-pagination {
         bottom: 12px;
         .swiper-pagination-bullet {

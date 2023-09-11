@@ -17,6 +17,7 @@
         <!-- 其他页面 -->
         <div class="Normalpage" v-else>
           <h1 class="CmsContentTitle">{{content.Title}}</h1>
+          <h1 class="CmsContentDesc">{{content.Desc}}</h1>
           <p v-html="content.Body" class="otherpage"></p>
         </div>
       <div class="clear"></div>
@@ -77,15 +78,23 @@ export default class InsCmsContent extends Vue {
 </script>
 <style scoped lang="less">
 .pc {
+  #container {
+    margin-top: -30px;
+  }
   .Normalpage {
     width: 1200px;
     margin: 0 auto;
     .CmsContentTitle {
+      font-size:30px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .CmsContentDesc {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 20px;
       text-align: center;
-      margin-top: 60px;
     }
     .otherpage {
       /deep/ p {
@@ -115,7 +124,7 @@ export default class InsCmsContent extends Vue {
         border-radius: 2rem;
         text-transform: uppercase;
         font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
-        background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+        background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
       }
     }
   }
@@ -131,12 +140,13 @@ export default class InsCmsContent extends Vue {
           .btn.save {
             border: 0;
             width: 100%;
-            background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+           background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
             border-radius: 0;
-            font-size: 20px;
+            font-size: 24px;
             height: 55px;
             margin: 0;
             border-radius: 3rem;
+            font-weight: 500!important;
           }
 
           #Anwers {
@@ -147,8 +157,14 @@ export default class InsCmsContent extends Vue {
               padding: 0;
               border: 0;
               width: 100%;
+              .checkbox {
+                span {
+                  font-size: 18px;
+                  color: #666;
+                }
+              }
               .control-label {
-                margin-bottom: 0px;
+                margin-bottom:.5rem!important;
                 color: #666;
                 font-size: 18px;
                 font-weight: 500;
@@ -254,15 +270,23 @@ export default class InsCmsContent extends Vue {
 }
 
 .mobile {
+  #container {
+    margin-top: -30px;
+  }
   .Normalpage {
     width: 90%;
     margin: 0 auto;
     .CmsContentTitle {
-      font-size: 1.8rem;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 6rem;
+    }
+    .CmsContentDesc {
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 1rem;
       text-align: center;
-      margin-top: 3rem;
     }
     .otherpage {
       /deep/ p {
@@ -277,7 +301,7 @@ export default class InsCmsContent extends Vue {
     position: relative;
     margin-bottom: 30px;
     .TopBanner {
-      height: 20rem;
+      height: 22rem;
       position: relative;
       .BottomText {
         position: absolute;
@@ -292,7 +316,7 @@ export default class InsCmsContent extends Vue {
         border-radius: 2rem;
         text-transform: uppercase;
         font-family: 'Baloo2-Bold', 'Microsoft YaHei' !important;
-        background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+       background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
       }
     }
   }
@@ -307,7 +331,7 @@ export default class InsCmsContent extends Vue {
           .btn.save {
             border: 0;
             width: 100%;
-            background: -webkit-linear-gradient(left, #cfd701, #8ab343 100%);
+           background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
             border-radius: 0;
             font-size: 1.6rem;
             height: 3.5rem;
@@ -324,10 +348,16 @@ export default class InsCmsContent extends Vue {
               border: 0;
               width: 100%;
               .control-label {
-                margin-bottom: 0px;
+                margin-bottom: 1rem;
                 color: #666;
                 span {
                   color: @base_color!important;
+                }
+              }
+            .checkbox {
+                span {
+                  font-size: 1.5rem;
+                  color: #666;
                 }
               }
               .control-label-remark {

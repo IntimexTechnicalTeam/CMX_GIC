@@ -65,7 +65,7 @@ export default class InsFooterLayout extends Vue {
               line-height: 55px;
               color: #fff;
               text-align: center;
-              background: -webkit-linear-gradient(left , rgb(207, 215, 1) , rgb(138, 179, 67) 100%);
+              background-image: linear-gradient(to right, rgb(207, 215, 1) , rgb(138, 179, 67));
             }
           }
         .BigTitle {
@@ -90,6 +90,13 @@ export default class InsFooterLayout extends Vue {
               width: 100%;
             }
           }
+          .ChiFont {
+            .BigTitle{
+              span {
+                font-weight: 700;
+              }
+            }
+          }
         .ContactInfo {
           width: 43%;
           .HeadTitle {
@@ -106,7 +113,40 @@ export default class InsFooterLayout extends Vue {
               height: 2rem;
               display: inline-block;
               background: url('/static/images/pc/pc_37.png') no-repeat center center;
-              background-size: 2rem;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpb {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_36.png') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpc {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_22.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpd {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_26.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .Tpe {
+              width: 2rem;
+              height: 2rem;
+              display: inline-block;
+              background: url('/static/images/pc/pc_27.jpg') no-repeat center center;
+              background-size: 1.5rem;
+              margin-right: 0.5rem;
             }
             .fontTitle {
                 font-family: 'Baloo2-Bold', 'Microsoft YaHei'!important;
@@ -126,6 +166,13 @@ export default class InsFooterLayout extends Vue {
           }
           .bottom20 {
             margin-bottom: .5rem;
+          }
+        }
+        .ChiFont {
+          .HeadTitle {
+            .fontTitle {
+              font-weight: 700;
+            }
           }
         }
       }

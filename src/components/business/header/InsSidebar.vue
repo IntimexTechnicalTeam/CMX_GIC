@@ -1,15 +1,9 @@
 <template>
   <div class="siderbarContainer">
     <div id="sidebar" v-show="isShow">
-      <a href="javascript:void(0);" @click="toTop"
-        ><img src="/static/Images/pc/pc_43.png"
-      /></a>
-      <a href="javascript:void(0);" @click="show = !show"
-        ><img src="/static/Images/pc/pc_45.png"
-      /></a>
       <span v-show="show">
         <a
-          href="https://api.whatsapp.com/send?phone=85237039230&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B"
+          href="https://api.whatsapp.com/send?phone=85254097780&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%B8%80%E4%B8%8B"
           target="_blank"
           ><img src="/static/Images/pc/pc_40.png"
         /></a>
@@ -23,6 +17,12 @@
           ><img src="/static/Images/pc/pc_44.png"
         /></a>
       </span>
+      <a href="javascript:void(0);" @click="show = !show"
+        ><img :src="show?'/static/Images/pc/pc_45.png':'/static/Images/pc/pc_45_hover.png'"
+      /></a>
+      <a href="javascript:void(0);" @click="toTop"
+        ><img src="/static/Images/pc/pc_43.png"
+      /></a>
     </div>
     <!-- 显示wechat -->
     <div class="wechatBox">
@@ -71,7 +71,7 @@ import $ from 'jquery';
 export default class InsSidebar extends Vue {
   isShow: boolean = true;
   showFBMessenger: boolean = false;
-  show: boolean = false;
+  show: boolean = true;
   showLivechat () {
     $('.fb-livechat').fadeToggle();
     $('.wechatBox').hide();

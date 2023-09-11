@@ -44,7 +44,7 @@ module.exports = {
     // 設置是否開啟固定頂部菜單
     // ps: 如開啟，fixedHeader默認獲取DefaultHeader組件，如排版改動不大，可通過組件間傳值showInFixed或css區分控制;
     //     如需重新排版,請在組件內添加相關內容( Eg. <Component> fixedHeader排版內容 </Component>  )
-    fixedHeader: false,
+    fixedHeader: true,
     // 手機版側欄滑動菜單設置
     slideMenu: {
       direction: 'right', // 菜單滑出方向 => 默認值 'top', 可選值 'top', 'left', 'right'

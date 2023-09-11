@@ -144,3 +144,15 @@ export default class insNews extends Vue {
     }
 }
 </script>
+<style scoped lang="less">
+.pc {
+  #container {
+    margin-top: -30px;
+  }
+}
+.mobile {
+  #container {
+    margin-top: -30px;
+  }
+}
+</style>

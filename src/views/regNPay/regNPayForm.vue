@@ -15,8 +15,8 @@ export default class RNPForm extends Vue {
 
   content: string = '';
   Signer: any = null;
-
-  getForm () {
+  IsLogin: boolean = false;
+  /*   getForm () {
     this.$Api.regAndPay.getHtml((this.formKey || this.$route.params.id), this.currentlang, this.isMobile).then(result => {
       this.content = result.HtmlString;
 
@@ -40,8 +40,71 @@ export default class RNPForm extends Vue {
         });
       });
     });
-  }
+  } */
+  getForm () {
+    // this.lang
+    this.$Api.regAndPay.getHtml((this.formKey || this.$route.params.id), this.currentlang, this.isMobile).then(result => {
+      if (result.IsLogin) {
+        if (this.$Storage.get('isLogin') === 0) {
+          this.$Confirm(
+            this.$t('Message.PopTipsA'),
+            this.$t('Message.PopTipsB'),
+            () => {
+              this.$Login(this.getForm);
+            }
+          );
+        } else {
+          this.content = result.HtmlString;
+          this.$nextTick(() => {
+            if (document.querySelectorAll('#Sign').length > 0) {
+              this.Signer = new intimex.CanvasSigner(
+                '#NewSignCanvas',
+                '#Signature',
+                {
+                  color: '#58B63A',
+                  width: 5
+                }
+              );
+              this.Signer.initCanvas();
 
+              window['Signer'] = this.Signer;
+            }
+            if (result.Title) document.title = result.Title;
+            let _this = this;
+            document.dispatchEvent(new Event('rnpFinshed'));
+            document.querySelectorAll('input[type="text"],input[type="email"]').forEach(function (inputEl) {
+              inputEl.addEventListener('focus', _this.onInputFocus);
+              inputEl.addEventListener('blur', _this.onInputBlur);
+            });
+          });
+        }
+      } else {
+        this.content = result.HtmlString;
+        this.$nextTick(() => {
+          if (document.querySelectorAll('#Sign').length > 0) {
+            this.Signer = new intimex.CanvasSigner(
+              '#NewSignCanvas',
+              '#Signature',
+              {
+                color: '#58B63A',
+                width: 5
+              }
+            );
+            this.Signer.initCanvas();
+
+            window['Signer'] = this.Signer;
+          }
+          if (result.Title) document.title = result.Title;
+          let _this = this;
+          document.dispatchEvent(new Event('rnpFinshed'));
+          document.querySelectorAll('input[type="text"],input[type="email"]').forEach(function (inputEl) {
+            inputEl.addEventListener('focus', _this.onInputFocus);
+            inputEl.addEventListener('blur', _this.onInputBlur);
+          });
+        });
+      }
+    });
+  }
   onInputFocus (e) {
     e.target.parentNode.parentNode.classList.add('focus');
   }

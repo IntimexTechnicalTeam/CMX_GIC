@@ -39,7 +39,8 @@ export default class InsBanner extends Vue {
 
   swiperOption: object = {
     autoplay: {
-      disableOnInteraction: false
+      disableOnInteraction: false,
+      delay: 5000 // 1秒切换一次
     },
     pagination: {
       el: '.swiper-pagination',

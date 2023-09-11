@@ -4,7 +4,12 @@
             <div class="left">
                  <ins-lang-switch />
             </div>
-            <div class="right"><a href="#"><img src="/static/images/mobile/mobile_07.jpg"></a></div>
+            <div class="center">
+                <span class="loginBtn"><MobileInsLogin/></span>
+            </div>
+            <div class="right">
+                <a href="https://www.facebook.com/gicdental/" target="_blank"><img src="/static/images/mobile/t02.jpg"></a>
+            </div>
         </div>
         <div id="menu">
             <Menu :backColor="'@base_color'" :textColor="'#fff'" :uniqueOpened="true" />
@@ -20,7 +25,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   components: {
     InsLogo: () => import('@/components/base/InsLogo.vue'),
     Menu: () => import('@/components/business/header/InsElMenu.vue'),
-    InsLangSwitch: () => import('@/components/business/header/InsLangSwitch.vue')
+    InsLangSwitch: () => import('@/components/business/header/InsLangSwitch.vue'),
+    MobileInsLogin: () => import('@/components/business/header/MobileInsLogin.vue')
   }
 })
 export default class InsMenuLayout extends Vue {
@@ -70,19 +76,26 @@ export default class InsMenuLayout extends Vue {
         height: 2.5rem;
         margin-top: 2rem;
         .left {
-            width: calc(50% - 1px);
+            width: calc(33.3% - 1px);
             display: flex;
             justify-content: center;
             align-items: center;
         }
+       .center {
+            width: calc(33.3% - 1px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid #eee;
+        }
         .right {
-            width: 50%;
+            width: calc(33.3% - 1px);
             display: flex;
             justify-content: center;
             align-items: center;
             border-left: 1px solid #eee;
             img {
-                width: 2.5rem;
+                width: 35px;
             }
         }
     }
@@ -259,7 +272,9 @@ export default class InsMenuLayout extends Vue {
         cursor: pointer;
     }
 }
-
+.loginBtn {
+    position: relative;
+}
 /deep/ .langSwitch {
     font-size: 1.5rem;
     color: #106919;

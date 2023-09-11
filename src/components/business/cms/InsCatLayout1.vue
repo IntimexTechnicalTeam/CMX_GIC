@@ -5,7 +5,7 @@
          >
             <div class="InnerBox">
                 <ul>
-                    <li v-for="(v,index) in MeunList" :key="index" :class="{'ActiveBg':v.Id==id}">
+                    <li v-for="(v,index) in MeunList" :key="index" :class="{'ActiveBg':v.Id==id,'ChiFont':currentlang!=='E'}">
                         <router-link :to="'/cms/catDetail/'+v.Id">
                         <span v-if="v.Id=='40123'"><img :src="v.Id==id?'/static/images/pc/pc_52.png':'/static/images/pc/pc_47.png'"></span>
                         <span v-if="v.Id=='40124'"><img :src="v.Id==id?'/static/images/pc/pc_48.png':'/static/images/pc/pc_50.png'"></span>
@@ -16,6 +16,7 @@
                 </ul>
             </div>
          </div>
+         <!-- Moble -->
          <div v-if="isMobile">
             <div class="BodyContent">
                 <p class="titleFont">{{CateTitle}}</p>
@@ -25,14 +26,28 @@
                 </div>
             </div>
          </div>
+         <!-- Pc -->
          <div v-else>
-           <p class="titleFont">{{CateTitle}}</p>
-            <div class="BodyContent">
-                <div class="perData" v-for="(v,index) in contentList" :key="index">
-                    <p class="perTitle">{{v.Title}}</p>
-                    <p class="perContent" v-html="v.Body"></p>
+            <!-- 中文版 -->
+           <div class="ChiFont" v-if="currentlang!=='E'">
+            <p class="titleFont">{{CateTitle}}</p>
+                <div class="BodyContent">
+                    <div class="perData" v-for="(v,index) in contentList" :key="index">
+                        <p class="perTitle">{{v.Title}}</p>
+                        <p class="perContent" v-html="v.Body"></p>
+                    </div>
                 </div>
-            </div>
+           </div>
+             <!-- 英文版 -->
+           <div  v-else>
+            <p class="titleFont">{{CateTitle}}</p>
+                <div class="BodyContent">
+                    <div class="perData" v-for="(v,index) in contentList" :key="index">
+                        <p class="perTitle">{{v.Title}}</p>
+                        <p class="perContent" v-html="v.Body"></p>
+                    </div>
+                </div>
+           </div>
          </div>
 
     </div>
@@ -82,6 +97,9 @@ export default class InsCatLayout1 extends Vue {
     get isMobile () {
       return this.$store.state.isMobile;
     }
+    get currentlang () {
+      return this.$i18n.locale;
+    }
     mounted () {
       this.getCategoryByDevice();
       this.getContentsByCatId();
@@ -100,7 +118,7 @@ export default class InsCatLayout1 extends Vue {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        height: 400px;
+        height: 430px;
         .InnerBox {
           width: 1200px;
           margin: 0 auto;
@@ -115,21 +133,19 @@ export default class InsCatLayout1 extends Vue {
             align-items: center;
             li{
                 background: #fff;
-                padding: 0px 1rem;
+                padding: 0.5rem 1rem;
                 margin-bottom: 1rem;
                 border-radius: 30px;
                 width: 29%;
                 border: 2px solid #fff;
                 a {
-                  width: 100%;
                   display: flex;
                   align-items: center;
-                  justify-content: flex-start;
                   color: @base_color;
                   font-size: 23px;
                     span {
                     width: 2.5rem;
-                    display: inline-block;
+                    display:flex;
                     margin-right: .5rem;
                         img {
                             width: 100%;
@@ -143,6 +159,14 @@ export default class InsCatLayout1 extends Vue {
                 border: 2px solid #fff;
                 a{
                     color: #fff;
+                }
+            }
+            .ChiFont {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a {
+                    font-size: 22px!important;
                 }
             }
           }
@@ -173,7 +197,7 @@ export default class InsCatLayout1 extends Vue {
             float: left;
             margin-right: 2%;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             &:nth-child(2n) {
               margin-right: 0px!important;
             }
@@ -196,8 +220,8 @@ export default class InsCatLayout1 extends Vue {
                 /deep/ .FaqMain {
                     padding: 1rem;
                     .picArry {
-                        width: 100%;
-                        display: inline-block;
+                        width: 85%;
+                        margin: 0 auto;
                         .top {
                             width: 100%;
                             display: flex;
@@ -290,6 +314,25 @@ export default class InsCatLayout1 extends Vue {
         }
 
     }
+    .ChiFont {
+        .titleFont {
+            font-size: 28px!important;
+            font-weight: 700;
+        }
+        .perTitle {
+            font-size: 22px!important;
+        }
+        .perContent {
+            /deep/ .FaqMain {
+                .normalText {
+                    font-size: 18px!important;
+                }
+                .weightText {
+                    font-size: 18px!important;
+                }
+            }
+        }
+    }
   }
 }
 
@@ -300,7 +343,7 @@ export default class InsCatLayout1 extends Vue {
     .TopBanner {
         width: 100%;
         display: inline-block;
-        padding-top: 3rem;
+        padding-top: 6rem;
         padding-bottom: 3rem;
         .InnerBox {
           width: 80%;
@@ -310,19 +353,18 @@ export default class InsCatLayout1 extends Vue {
             display: inline-block;
             li{
                 background: #fff;
-                padding: 0px 1rem;
+                padding: 0.5rem 1rem;
                 margin-bottom: 1rem;
                 border-radius: 30px;
                 a {
-                  width: 100%;
                   display: flex;
                   align-items: center;
-                  justify-content: flex-start;
                   color: @base_color;
                   font-size: 1.4rem;
                     span {
-                    width: 3rem;
-                    display: inline-block;
+                    width: 2.5rem;
+                    display:flex;
+                    margin-right: .5rem;
                         img {
                             width: 100%;
                         }
@@ -375,8 +417,8 @@ export default class InsCatLayout1 extends Vue {
                 /deep/ .FaqMain {
                     padding: 1rem;
                     .picArry {
-                        width: 100%;
-                        display: inline-block;
+                        width: 90%;
+                        margin: 0 auto;
                         .top {
                             width: 100%;
                             display: flex;

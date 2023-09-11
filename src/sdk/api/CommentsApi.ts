@@ -20,8 +20,13 @@ export class CommentsApi extends WSAPI {
       return result.data;
     });
   }
-  uploadImage (param) {
-    return Promise.resolve(this.apiHost + this.apiPath + '/FileUpload/UploadFile');
+  uploadFile (param) {
+    return Promise.resolve(this.apiPath + '/FileUpload/UploadFile');
+  }
+  deleteUploadFile (path) {
+    return this.instance.get(this.apiPath + '/FileUpload/DeleteUploadFile', { params: { Path: path } }).then((result) => {
+      return result.data;
+    });
   }
   private static instance: CommentsApi;
   //* * 单例 */

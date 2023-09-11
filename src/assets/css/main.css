@@ -50,3 +50,12 @@ body {
   font-family: 'Baloo2-Regular', 'Microsoft YaHei';
   overflow-x: hidden!important;
 }
+.pageTitle{
+  font-size: 24px;
+  margin: 0 auto;
+  margin-top: 50px;
+  line-height: 30px;
+  border-left: 5px solid #a4c02a;
+  text-indent: 10px;
+  margin-bottom: 20px;
+}

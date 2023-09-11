@@ -6,10 +6,12 @@ import InsNotice from '@/components/base/InsNotice.vue';
 import InsConfirm from '@/components/base/InsConfirm.vue';
 import InsLayer from '@/components/service/InsLayer.vue';
 import InstoreSdk from './sdk/InstoreSdk';
-// import InLogin from '@/components/business/pc/login/InsLoginFlow.ts';
+import InLogin from '@/components/business/login/InsLoginFlow';
 import storage from '@/sdk/common/Storage';
+import message from 'element-ui/lib/message';
+import language from '@/lang/index';
 import { FrontE } from '@/sdk/common/SysConst';
-import { LoadScript } from './assets/scripts/common';
+import LoadScript from './sdk/common/LoadScript';
 const util = {
   info: function (options, type) {
     if (options === undefined || options === null) {
@@ -161,21 +163,42 @@ const util = {
       return this.layer;
     }
   },
-  login: undefined as any,
-  // Login: function (rollback, ...params) {
-  //   if (this.login) this.login.showL();
-  //   else {
-  //     this.login = new InLogin({ i18n, store }).$mount();
-  //     document.body.appendChild(this.login.$el);
-  //   }
-  //   this.login.setRollback(rollback, params);
-  //   this.login.showL();
-  // },
   delay: 0,
   Shake (fn, d) {
     if (!(fn instanceof Function)) return;
     let timeout = d || 1000;
     if (this.delay === 0) { this.delay = setTimeout(fn, timeout); } else { clearTimeout(this.delay); this.delay = setTimeout(fn, timeout); }
+  },
+  login: undefined as any,
+  Login: function (rollback, ...params) {
+    if (this.login) this.login.showL();
+    else {
+      this.login = new InLogin({ i18n, store }).$mount();
+      document.body.appendChild(this.login.$el);
+    }
+    this.login.setRollback(rollback, params);
+    this.login.showL();
+  },
+  LoginClose: function () {
+    if (this.login) this.login.hidden();
+  },
+  CheckMemberInfo (member) {
+    if (!member) return;
+    let keys = Object.keys(member);
+    let lang = Vue.prototype.$Storage.get('locale');
+    for (let index = 0; index < keys.length; index++) {
+      const element = keys[index];
+      if (element.match(/(FirstName)|(LastName)|(Mobile)|(BirthDate)/) && !member[element]) {
+        // util.Shake(() => {
+        //   Vue.prototype.$notify({
+        //     title: (language.messages[lang].Message as any).Message,
+        //     dangerouslyUseHTMLString: true,
+        //     message: '<strong>' + (language.messages[lang].Message as any).MemberInfo + '</strong>'
+        //   });
+        // }, 2000);
+        break;
+      }
+    }
   },
   install: function (Vue) {
     Vue.prototype.$Inform = util.info;
@@ -191,21 +214,11 @@ const util = {
     Vue.prototype.$Storage = storage;
     Vue.prototype.Shake = util.Shake;
     Vue.prototype.FrontE = FrontE;
+    Vue.prototype.CheckMemberInfo = util.CheckMemberInfo;
     // 掛載方法（引入外部js）到實例
     Vue.prototype.$LoadScript = LoadScript;
-
     Vue.prototype.Reload = function () {
       window.location.reload();
-      // if (this instanceof Vue) {
-      //   let path = this.$route.path;
-      //   // eslint-disable-next-line no-unused-expressions
-      //   setTimeout(() => { this.$router.push('/none'); }, 100);
-      //   setTimeout(() => { this.$router.push(path); }, 500);
-      // } else {
-      //   let path = location.href.split(location.host)[1];
-      //   setTimeout(() => { Vue.prototype.root.$router.push('/none'); }, 100);
-      //   setTimeout(() => { Vue.prototype.root.$router.push(path); }, 500);
-      // }
     };
   }
 };
