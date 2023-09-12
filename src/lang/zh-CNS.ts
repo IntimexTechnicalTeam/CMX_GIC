@@ -115,7 +115,9 @@ export default {
     Already: '已经有一个账户？',
     Signinnow: '立即登录',
     onlineaccount: '没有在线账户？',
-    Signin: '登入'
+    Signin: '登入',
+    TipsA: '提示',
+    TipsB: '请先登录'
   },
   Register: {
     RegisterTitle: '注册会员',

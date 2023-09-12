@@ -1,6 +1,6 @@
 <template>
-<div class="">
-    <div class="insLogin_warrper mobileLogin" v-if="isMobile">
+<div id="container">
+  <div class="insLogin_warrper">
       <div class="insLogin_title" >
          <div class="fblogin" @touchstart="fbLogin">
           <img src="/static/facebook.png" />
@@ -65,86 +65,34 @@
                 </div>
                 <InsInput2 :placeholder="$t('Register.UserEmail')" v-model="registerForm.email" width="100%" type="email" />
                 </InsForm>
+                <!-- <div></div> -->
+                <el-checkbox-group v-model="terms" style="margin: 20px 0 20px 0">
+                    <el-checkbox name="type"></el-checkbox><span><a href="/CMS/content/shop_terms" target="_blank" style="font-size: 14px;padding-left: 14px;color: #666666;
+    text-decoration: none;">{{$t('Register.RegisterAgree')}}</a></span>
+                </el-checkbox-group>
+                <el-checkbox-group v-model="registerForm.OptOutReceiving" style="margin: 10px 0 20px 0">
+                    <el-checkbox name="type"></el-checkbox><span><a href="javascript:;" style="font-size: 14px;padding-left: 14px;color: #666666;
+    text-decoration: none;">{{$t('Register.promotionalinformation')}}</a></span>
+                </el-checkbox-group>
               </div>
-              <InsButton :nama="$t('Register.Createanaccount')" @click="register" size="huge"  class="loginBtn" style="margin-top:2rem;"/>
+              <InsButton :nama="$t('Register.Createanaccount')" @click="register" size="huge"  class="loginBtn"/>
           </div>
       </div>
   </div>
-  <div class="insLogin_warrper pcLogin" v-else>
-      <div>
-        <div class="insLogin_title" v-if="!isIe">
-          <div class="facebook_login" @click="fbLogin">
-            <img src="/static/facebook.png" />
-            <span>{{$t('Login.FaceBookUse')}}</span>
-          </div>
-        </div>
-        <div class="insLogin_divide" v-if="!isIe">
-            <div class="divide"></div>
-            <div class="divide_or">{{$t('Register.or')}}</div>
-            <div class="divide"></div>
-        </div>
-      </div>
-      <div class="insLogin_main">
-          <div class="login">
-              <div>
-                <div class="login_title">{{$t('Login.doLogin')}}</div>
-                <InsForm ref="loginForm" v-model="loginForm">
-                    <InsInput2 :placeholder="$t('Register.UserEmail')" width="100%" v-model="loginForm.email" />
-                    <InsInput2 :placeholder="$t('Register.UserRegPassword')" width="100%" v-model="loginForm.password" type="logopassword" />
-                    <div class="remember_warpper">
-                        <div class="remember">
-                            <input
-                                type="checkbox"
-                                class="remember-btn"
-                                name="remember-btn"
-                                id="remember-btn"
-                                value
-                            />
-                            <label for="remember-btn">{{$t('Login.RememberMe')}}</label>
-                        </div>
-                        <a class="forget" href="/account/forgetPassword">{{$t('Login.ForgetPwd')}}</a>
-                    </div>
-                </InsForm>
-              </div>
-              <InsButton :nama="$t('Login.doLogin')" @click="login" style="margin-top: 12rem;"/>
-          </div>
-          <div class="register">
-              <div>
-                <div class="register_title">{{$t('Register.RegisterBtn')}}</div>
-                <InsForm ref="registerForm" v-model="registerForm">
-                <div class="register_half">
-                    <InsInput2 :placeholder="$t('Register.UserFirstName')" width="48%" v-model="registerForm.firstName" />
-                    <InsInput2 :placeholder="$t('Register.UserLastName')" width="48%" v-model="registerForm.lastName"/>
-                    <InsInput2 :placeholder="$t('Register.UserRegPassword')" width="100%" v-model="registerForm.password" type="password"/>
-                    <InsInput2 :placeholder="$t('Register.UserConfirmPassword')" width="100%" v-model="registerForm.confirmPassword" type="confirmpassword" :rule="registerForm.password" />
-                </div>
-                 <div class="register_half">
-                     <InsInput2 :placeholder="$t('DeliveryAddress.Mobile')" width="100%"  :must="false" v-model="registerForm.Mobile"  type="phone"/>
-                </div>
-                <InsInput2 :placeholder="$t('Register.UserEmail')" v-model="registerForm.email" width="100%" type="email" />
-                </InsForm>
-              </div>
-              <InsButton :nama="$t('Forgetpassword.NextStep')" @click="register"  style="margin-top: 2rem;"/>
-          </div>
-      </div>
   </div>
-
-</div>
-
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from 'vue-property-decorator';
+import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
 import InsInput2 from '@/components/base/InsInput2.vue';
 import InsButton from '@/components/base/InsButton.vue';
 import InsForm from '@/components/base/InsForm.vue';
-import { CheckboxGroup, Checkbox } from 'element-ui';
-@Component({ components: { InsInput2, InsButton, InsForm, CheckboxGroup, Checkbox } })
+@Component({ components: { InsInput2, InsButton, InsForm } })
 export default class InsLoginN extends Vue {
     private terms: boolean = true;
+    tabIndex: number = 1;
     faceBookLogin:string='';
     lang:string[] = ['E', 'C', 'S'];
-    tabIndex: number = 1;
     private loginForm = {
       email: '',
       password: ''
@@ -159,14 +107,11 @@ export default class InsLoginN extends Vue {
       Mobile: '',
       OptOutReceiving: true
     }
-    get currentlang () {
-      return this.$Storage.get('locale');
-    }
     toggleTab (index) {
       this.tabIndex = index;
     }
-    toURL (val) {
-      window.location.href = val;
+    get currentlang () {
+      return this.$Storage.get('locale');
     }
     login () {
       let _this = this;
@@ -176,12 +121,13 @@ export default class InsLoginN extends Vue {
             function (response) {
               _this.$store.dispatch('doLogin');
               _this.$emit('succeed');
+              // return _this.$route.query && _this.$route.query.returnurl ? _this.$route.query.returnurl : undefined;
             },
             function (response) {
               _this.$message({
                 message: response.Message,
                 type: 'error',
-                customClass: 'messageboxNoraml'
+                customClass: 'messageBoxMobile'
               });
             }
           ).then(
@@ -196,6 +142,7 @@ export default class InsLoginN extends Vue {
                     _this.$Storage.set('locale', _this.lang[data.Language]);
                     _this.$store.dispatch('setMemberInfo', data);
                     _this.getShopCart();
+                    // if (url) { window.location.href = (_this.$route.query.returnurl as string); } else { window.location.href = '/account/memberInfo'; }
                   } else {
                     _this.$store.dispatch('Logout');
                   }
@@ -204,7 +151,7 @@ export default class InsLoginN extends Vue {
                   _this.$message({
                     message: data,
                     type: 'error',
-                    customClass: 'messageboxNoraml'
+                    customClass: 'messageBoxMobile'
                   });
                 }
               );
@@ -235,7 +182,7 @@ export default class InsLoginN extends Vue {
                   _this.$message({
                     message: response.Message,
                     type: 'error',
-                    customClass: 'messageboxNoraml'
+                    customClass: 'messageBoxMobile'
                   });
                 }
               ).then(
@@ -258,7 +205,7 @@ export default class InsLoginN extends Vue {
                       _this.$message({
                         message: data,
                         type: 'error',
-                        customClass: 'messageboxNoraml'
+                        customClass: 'messageBoxMobile'
                       });
                     }
                   );
@@ -268,7 +215,7 @@ export default class InsLoginN extends Vue {
               this.$message({
                 message: result.Message,
                 type: 'error',
-                customClass: 'messageboxNoraml'
+                customClass: 'messageBoxMobile'
               });
             }
           });
@@ -289,9 +236,6 @@ export default class InsLoginN extends Vue {
     mounted () {
       window.dispatchEvent(new Event('faceBookLoad'));
     }
-    get isMobile () {
-      return this.$store.state.isMobile;
-    }
     fbLogin () {
       window['FB'].login(function (response) {
         window['checkLoginState']();
@@ -300,93 +244,22 @@ export default class InsLoginN extends Vue {
 }
 </script>
 <style lang="less">
-.messageboxNoraml{
-  z-index: 1000000000!important;
+.messageBoxMobile{
+      z-index: 100000!important;
+}
+.insLogin_warrper .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+    background-color: @base_color;
+    border-color: @base_color;
 }
 </style>
 <style lang="less" scoped>
-.pcLogin{
-    width: 1200px;
-    margin: 0rem auto;
-    padding-bottom: 10px;
-    .insLogin_title{
-        width: 1060px;
-        margin: 0 auto;
-        text-align: center;
-        padding: 5px;
-        box-sizing: border-box;
-        .facebook_login{
-          display: inline-block;
-          background-color: #3975ea;
-          color: white;
-          padding: 8px 16px;
-          cursor: pointer;
-          border-radius: 8px;
-          font-weight: bold;
-          user-select: none;
-          span{
-            vertical-align: middle;
-          }
-          img{
-            height: 32px;
-            vertical-align: middle;
-            padding-right: 16px;
-          }
-        }
-    }
-    .insLogin_divide{
-        white-space: nowrap;
-        width: 1060px;
-        margin: 0px auto;
-        .divide{
-            display: inline-block;
-            width: 500px;
-            margin: 20px 0;
-            border-top: solid 1px rgba(0, 0, 0, .2);
-            vertical-align: bottom;
-        }
-        .divide_or{
-            vertical-align: bottom;
-            display: inline-block;
-            line-height: 41px;
-            margin: 0 20px;
-            font-size: 20px;
-        }
-    }
-    .insLogin_main{
-        width: 1060px;
-        box-sizing: border-box;
-        margin: 0 auto;
-        display: flex;
-        .login{
-          float: left;
-          width: 47.5%;
-          margin-right: 2.5%;
-            .remember_warpper{
-                padding: 0 0 0 20px;
-                margin: 30px 0 0 0;
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-        .register{
-            width: 47.5%;
-            float: left;
-            padding-left: 2.5%;
-            border-left: solid 1px rgba(0, 0, 0, .2);
-            .register_half{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-        }
-    }
+.loginBtn{
+    padding: 1rem;
+    font-size: 1.4rem;
 }
-.mobileLogin{
+.insLogin_warrper{
     width: 100%;
     margin: 0 auto;
-    height: 100vh;
-    overflow: auto;
     .insLogin_title{
        padding: 24px 1rem;
        text-align: center;
@@ -407,11 +280,6 @@ export default class InsLoginN extends Vue {
     span{
       vertical-align: middle;
     }
-}
-.loginBtn {
-  height: 45px;
-  line-height: 45px;
-  font-size: 1.6rem;
 }
 .insLogin_title .or {
     text-align: center;
@@ -472,7 +340,6 @@ export default class InsLoginN extends Vue {
         width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
-        padding-bottom: 50px;
         .login{
             display: inline-flex;
             justify-content: space-between;

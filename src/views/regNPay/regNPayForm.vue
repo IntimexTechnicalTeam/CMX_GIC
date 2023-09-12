@@ -44,16 +44,8 @@ export default class RNPForm extends Vue {
   getForm () {
     // this.lang
     this.$Api.regAndPay.getHtml((this.formKey || this.$route.params.id), this.currentlang, this.isMobile).then(result => {
-      if (result.IsLogin) {
-        if (this.$Storage.get('isLogin') === 0) {
-          this.$Confirm(
-            this.$t('Message.PopTipsA'),
-            this.$t('Message.PopTipsB'),
-            () => {
-              this.$Login(this.getForm);
-            }
-          );
-        } else {
+      if (this.isLogined) {
+        if (result.IsLogin) {
           this.content = result.HtmlString;
           this.$nextTick(() => {
             if (document.querySelectorAll('#Sign').length > 0) {
@@ -77,31 +69,17 @@ export default class RNPForm extends Vue {
               inputEl.addEventListener('blur', _this.onInputBlur);
             });
           });
+        } else {
+          return false;
         }
       } else {
-        this.content = result.HtmlString;
-        this.$nextTick(() => {
-          if (document.querySelectorAll('#Sign').length > 0) {
-            this.Signer = new intimex.CanvasSigner(
-              '#NewSignCanvas',
-              '#Signature',
-              {
-                color: '#58B63A',
-                width: 5
-              }
-            );
-            this.Signer.initCanvas();
-
-            window['Signer'] = this.Signer;
+        this.$Confirm(
+          this.$t('Login.TipsA'),
+          this.$t('Login.TipsB'),
+          () => {
+            this.$Login(this.getForm);
           }
-          if (result.Title) document.title = result.Title;
-          let _this = this;
-          document.dispatchEvent(new Event('rnpFinshed'));
-          document.querySelectorAll('input[type="text"],input[type="email"]').forEach(function (inputEl) {
-            inputEl.addEventListener('focus', _this.onInputFocus);
-            inputEl.addEventListener('blur', _this.onInputBlur);
-          });
-        });
+        );
       }
     });
   }
@@ -112,7 +90,9 @@ export default class RNPForm extends Vue {
   onInputBlur (e) {
     e.target.parentNode.parentNode.classList.remove('focus');
   }
-
+  get isLogined () {
+    return this.$store.state.isLogin;
+  }
   get currentlang () {
     return this.$Storage.get('locale');
   }

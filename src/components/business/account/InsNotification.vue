@@ -4,48 +4,48 @@
     <div id="main-content">
       <!-- 信箱选项栏 -->
       <p class="pageTitle">{{ $t("Notification.MyMessages") }}</p>
-      <Card shadow="hover" class="MessageHeader">
-        <Row class="MessageRow">
-          <ElCol :md="16" :xs="16"
+      <el-card shadow="hover" class="MessageHeader">
+        <el-row class="MessageRow">
+          <el-col :md="16" :xs="16"
             >{{ $t("Notification.TotalRecQtyWithSymbol") }}{{ TotalNum }}
-            {{ $t("Notification.UnreadWithSymbol") }}{{ MessageQty }}</ElCol
+            {{ $t("Notification.UnreadWithSymbol") }}{{ MessageQty }}</el-col
           >
-          <ElCol :span="8">
-            <ElButton type="success" @click="changeStatus()">{{
+          <el-col :span="8">
+            <el-button type="success" @click="changeStatus()">{{
               $t("Notification.MsgMarkAsRead")
-            }}</ElButton>
-          </ElCol>
-        </Row>
-      </Card>
+            }}</el-button>
+          </el-col>
+        </el-row>
+      </el-card>
       <!-- 信箱列表开始 -->
-      <Card shadow="hover">
-        <Table
+      <el-card shadow="hover">
+        <el-table
           :data="allMessage"
           style="width: 100%"
           :header-cell-style="tableHeader"
           :empty-text="$t('Input.nomessage')"
         >
-          <TableColumn type="expand">
+         <el-table-column type="expand">
             <template slot-scope="props">
-              <ElForm label-position="left" inline class="demo-table-expand">
-                <FormItem>
+              <el-form label-position="left" inline class="demo-table-expand">
+                <el-form-item>
                   <span>{{ props.row.Subject }}</span>
-                </FormItem>
-                <FormItem>
+                </el-form-item>
+                <el-form-item>
                   <span v-html="props.row.Content"></span>
-                </FormItem>
-              </ElForm>
+                </el-form-item>
+              </el-form>
             </template>
-          </TableColumn>
-          <TableColumn :label="$t('Notification.Check')" min-width="60" align="center">
+          </el-table-column>
+         <el-table-column :label="$t('Notification.Check')" min-width="60" align="center">
             <template slot-scope="props">
-              <Checkbox
+              <el-checkbox
                 @change="!markMsgAsRead(props.row.Id)"
                 prop="Id"
-              ></Checkbox>
+              ></el-checkbox>
             </template>
-          </TableColumn>
-          <TableColumn
+          </el-table-column>
+         <el-table-column
             :label="$t('Notification.Id')"
             align="center"
             width="100"
@@ -55,20 +55,20 @@
                 >{{ props.$index + (CurrentPage - 1) * pageNumber + 1 }}
               </span></template
             >
-          </TableColumn>
-          <TableColumn
+          </el-table-column>
+         <el-table-column
             :label="$t('Notification.MsgSender')"
             prop="FromDisplay"
-          ></TableColumn>
-          <TableColumn
+          ></el-table-column>
+         <el-table-column
             :label="$t('Notification.MsgSubject')"
             prop="Subject"
-          ></TableColumn>
-          <TableColumn
+          ></el-table-column>
+         <el-table-column
             :label="$t('Notification.MsgSenderDate')"
             prop="CreateDateStr"
-          ></TableColumn>
-          <TableColumn
+          ></el-table-column>
+         <el-table-column
             :label="$t('Notification.MsgReadStatus')"
             prop="IsRead"
             :formatter="IsReadFilter"
@@ -78,8 +78,8 @@
             ]"
             :filter-method="filterTag"
             filter-placement="bottom-end"
-          ></TableColumn>
-        </Table>
+          ></el-table-column>
+        </el-table>
         <inPage
           v-model="CurrentPage"
           :total="TotalRecord"
@@ -87,7 +87,7 @@
           styla="margin-top:20px;"
           v-show="TotalRecord > 0"
         ></inPage>
-      </Card>
+      </el-card>
       <!-- 信箱列表结束 -->
     </div>
   </div>

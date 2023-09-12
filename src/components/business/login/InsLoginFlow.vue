@@ -111,7 +111,8 @@ export default class InsLoginFlow extends Vue {
           font-size: 18px;
           font-weight: 700;
           letter-spacing: 3px;
-          right: 3px;
+          right: 20px;
+          top: 20px;
           padding: 18px 10px;
           color: #000;
           display: -webkit-box;

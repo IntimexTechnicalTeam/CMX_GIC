@@ -115,7 +115,9 @@ export default {
     Already: '已經有一個帳戶？',
     Signinnow: '立即登錄',
     onlineaccount: '沒有在線帳戶？',
-    Signin: '登入'
+    Signin: '登入',
+    TipsA: '提示',
+    TipsB: '請先登錄'
   },
   Register: {
     RegisterTitle: '註冊會員',

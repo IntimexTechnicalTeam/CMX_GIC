@@ -69,7 +69,7 @@ export default class InsComfirm extends Vue {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, .3);
-        z-index: 2018;
+        z-index: 100000;
     }
     .confirm{
         width: 400px;
@@ -79,7 +79,7 @@ export default class InsComfirm extends Vue {
         transform: translate(-50%,-50%);
         background-color: aliceblue;
         border-radius: 4px;
-        z-index: 2019;
+        z-index: 100001;
         /* box-shadow: 0 0 30px 5px rgba(0, 0, 0, .3) ; */
     }
     .title{
@@ -117,7 +117,7 @@ export default class InsComfirm extends Vue {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, .3);
-        z-index: 2018;
+        z-index: 100000;
     }
     .confirm{
         width: 22.5rem;
@@ -127,7 +127,7 @@ export default class InsComfirm extends Vue {
         transform: translate(-50%,-50%);
         background-color: aliceblue;
         border-radius: 0.5rem;
-        z-index: 2019;
+        z-index: 100001;
         /* box-shadow: 0 0 30px 5px rgba(0, 0, 0, .3) ; */
     }
     .title{

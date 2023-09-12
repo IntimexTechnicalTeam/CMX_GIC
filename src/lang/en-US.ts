@@ -115,7 +115,9 @@ export default {
     Already: 'Already have an account?',
     Signinnow: 'Sign in now',
     onlineaccount: 'Don\'t have an online account?',
-    Signin: 'Sign in'
+    Signin: 'Sign in',
+    TipsA: 'Tips',
+    TipsB: 'Please login'
   },
   Register: {
     RegisterTitle: 'Registration',
